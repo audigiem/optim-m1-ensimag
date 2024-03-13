@@ -1,0 +1,4 @@
+**corr**
+**/Fig/[0-9]*.png
+**__pycache__
+**.ipynb_checkpoints
