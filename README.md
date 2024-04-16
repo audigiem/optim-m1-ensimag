@@ -22,6 +22,8 @@ python -c "import cvxopt"
 Vous les trouverez dans les dossiers suivants :
 
 * [LP et QP](tp1/LP_QP.ipynb)
+* [GD](tp2/TP2_algorithmes_de_descente.ipynb)
+* [Proximal gradient descent](tp3/TP3_proximal_algorithms.ipynb)
 
 ## Misc
 
