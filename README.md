@@ -23,7 +23,10 @@ Vous les trouverez dans les dossiers suivants :
 
 * [LP et QP](tp1/LP_QP.ipynb)
 * [GD](tp2/TP2_algorithmes_de_descente.ipynb)
-* [Proximal gradient descent](tp3/TP3_proximal_algorithms.ipynb)
+* [Descente de gradient proximal](tp3/TP3_proximal_algorithms.ipynb)
+* [Algorithmes stochastiques](tp4/TP4_stochastic_gradient_and_co.ipynb)
+
+Il sera attendu des élèves qu'ils rendent le TP3 pour un éventuel point bonus sur la question d'ouverture à la fin du TP, et le TP4 qui comptera pour une partie de la note finale de l'examen.
 
 ## Misc
 
