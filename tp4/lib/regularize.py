@@ -7,6 +7,7 @@ import numpy as np
 
 def reg_l1(x, const):
     # ######## TODO (6) ########
+    return 0.
     raise NotImplementedError("TODO (6)")
 
 
