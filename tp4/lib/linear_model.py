@@ -105,8 +105,8 @@ class LogisticRegression:
             output = output @ A / n
             output += self.l2*x
         else:  # return partial gradient associated the datapoint (A[i], b[i])
-            output = -b[i]/(1 + np.exp(b[i]*np.dot(A[i], x))) * A[i]
-            output += self.l2*x
+            # ######## TODO (1) #########
+            output = np.zeros((n,))
 
         return output
 
