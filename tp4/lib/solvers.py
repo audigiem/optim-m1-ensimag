@@ -45,12 +45,21 @@ def GD(
     x_tab: array, shape (nb_features, max_iter)
         table of all the iterates
     '''
-    step_start = gd_stepsize_start(n, mu, L)
+    # Initialize an array (buffer) containing pas gradients
+    # computed wrt one data point
+    stepsize_0 = gd_stepsize_start(n, mu, L)
+
     x = x0
+    # x_tab contains all the iterates.
+    # It is returned in a (v)stacked format
     x_tab = [x]
 
     for k in range(max_iter):
-        x, = gd_step(x, grad, prox, gd_stepsize(k, step_start))
+        # Update the step size
+        stepsize = gd_stepsize(k, stepsize_0)
+
+        # Update iterate
+        x, = gd_step(x, grad, prox, stepsize)
         x_tab.append(x)
 
     return x, np.vstack(x_tab)
@@ -90,13 +99,24 @@ def SGD(
     x_tab: array, shape (nb_features, max_iter)
         table of all the iterates
     '''
+    # Initialize an array (buffer) containing pas gradients
+    # computed wrt one data point
     stepsize_0 = sgd_stepsize_start(n, mu, L)
+
     x = x0
+    # x_tab contains all the iterates.
+    # It is returned in a (v)stacked format
     x_tab = [x]
 
     for k in range(max_iter):
+        # Update the step size
         stepsize = sgd_stepsize(k, stepsize_0)
+
+        # Update iterate
         x, = sgd_step(x, grad, prox, stepsize)
+
+        # After looping through n data points, we consider that we
+        # performed the FLOP equivalent of a GD step, so we stack
         if k % n == 0:  # each completed epoch
             x_tab.append(x)
 
@@ -138,14 +158,28 @@ def SAGA(
         table of all the iterates
     '''
     d = len(x0)
+
+    # Initialize an array (buffer) containing pas gradients
+    # computed wrt one data point
     alpha = initialize_gradients_buffer(n, d)
+
+    # Gamma_0 the first step size at iteration 0
     stepsize_0 = saga_stepsize_start(n, mu, L)
+
     x = x0
+    # x_tab contains all the iterates.
+    # It is returned in a (v)stacked format
     x_tab = [x]
 
     for k in range(max_iter):
+        # Update the step size
         stepsize = saga_stepsize(k, stepsize_0)
+
+        # Update both the iterate and the buffer
         x, alpha = saga_step(x, grad, prox, stepsize, alpha)
+
+        # After looping through n data points, we consider that we
+        # performed the FLOP equivalent of a GD step, so we stack
         if k % n == 0:  # each completed epoch
             x_tab.append(x)
 
