@@ -25,4 +25,4 @@ def test_lr(it, start):
 ])
 @pytest.mark.parametrize('lr', [1e-4, 1e-6])
 def test_step(start_point, grad, lr):
-    assert np.abs(gd_step(start_point, grad, lambda x, _: x, lr)) <= np.abs(start_point)
+    assert np.abs(gd_step(start_point, 1, grad, lambda x, _: x, lr)) <= np.abs(start_point)
