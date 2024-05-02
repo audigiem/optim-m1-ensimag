@@ -28,5 +28,5 @@ def test_lr(it, start):
 @pytest.mark.parametrize('lr', [1e-4, 1e-6])
 def test_step(start_point, grad, lr):
     dist_begin = np.abs(start_point).mean()
-    dist_end = np.abs(sgd_step(start_point, grad, lambda x, _: x, lr)).mean()
+    dist_end = np.abs(sgd_step(start_point, 1, grad, lambda x, _: x, lr)).mean()
     assert dist_end <= dist_begin

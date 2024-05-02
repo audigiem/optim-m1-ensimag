@@ -34,6 +34,6 @@ def test_step(start_point, grad, lr):
     gb = np.zeros((1, 1))
     dist_begin = np.abs(start_point).mean()
     dist_end = np.abs(
-        saga_step(start_point, grad, lambda x, _: x, lr, gb)[0]
+        saga_step(start_point, 1, grad, lambda x, _: x, lr, gb)[0]
     ).mean()
     assert dist_end <= dist_begin
