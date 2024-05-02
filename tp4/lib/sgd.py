@@ -45,6 +45,7 @@ def sgd_stepsize(it: int, start: float) -> float:
 
 def sgd_step(
     x: np.ndarray,
+    n: int,
     grad: Callable[[np.ndarray, Optional[int]], np.ndarray],
     prox: Callable[[np.ndarray, float], np.ndarray],
     stepsize: float,

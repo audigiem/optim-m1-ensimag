@@ -59,7 +59,7 @@ def GD(
         stepsize = gd_stepsize(k, stepsize_0)
 
         # Update iterate
-        x, = gd_step(x, grad, prox, stepsize)
+        x, = gd_step(x, -1, grad, prox, stepsize)
         x_tab.append(x)
 
     return x, np.vstack(x_tab)
@@ -113,7 +113,7 @@ def SGD(
         stepsize = sgd_stepsize(k, stepsize_0)
 
         # Update iterate
-        x, = sgd_step(x, grad, prox, stepsize)
+        x, = sgd_step(x, n, grad, prox, stepsize)
 
         # After looping through n data points, we consider that we
         # performed the FLOP equivalent of a GD step, so we stack
@@ -176,7 +176,7 @@ def SAGA(
         stepsize = saga_stepsize(k, stepsize_0)
 
         # Update both the iterate and the buffer
-        x, alpha = saga_step(x, grad, prox, stepsize, alpha)
+        x, alpha = saga_step(x, n, grad, prox, stepsize, alpha)
 
         # After looping through n data points, we consider that we
         # performed the FLOP equivalent of a GD step, so we stack

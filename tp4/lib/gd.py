@@ -44,6 +44,7 @@ def gd_stepsize(it: int, start: float) -> float:
 
 def gd_step(
     x: np.ndarray,
+    n: int,
     grad: Callable[[np.ndarray, Optional[int]], np.ndarray],
     prox: Callable[[np.ndarray, float], np.ndarray],
     stepsize: float,
