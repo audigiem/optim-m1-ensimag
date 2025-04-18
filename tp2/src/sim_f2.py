@@ -15,19 +15,29 @@ class SimF2(Simulator):
         )
 
     def sim(self, x: np.ndarray):
+        """
+        Simuler f2 = 100*(x2-x1^2)^2 + (1-x1)^2
+        :param x: np.ndarray valeur varaible pour évaluer f2
+        :return: float f2(x), np.ndarray gradient de f2(x)
+        """
         assert x.shape == (self.n,)
-        # ==== PUT CODE HERE ====
-        raise NotImplementedError("=== put code here ===")
-        f = ...
-        g = ...
+        # f(x) = 100*(x2-x1^2)^2 + (1-x1)^2
+        f = 100*(x[1]-x[0]**2)**2 + (1-x[0])**2
+        # gradient de f en x
+        g = np.array([
+            -400*x[0]*(x[1]-x[0]**2) - 2*(1-x[0]),
+            200*(x[1]-x[0]**2)
+        ])
+        
         return f, g, None
 
     def primal(self, x: np.ndarray):
         assert x.shape == (self.n,)
-        raise NotImplementedError("=== put code here ===")
-        return
+        return 100*(x[1]-x[0]**2)**2 + (1-x[0])**2
 
     def gradient(self, x: np.ndarray):
         assert x.shape == (self.n,)
-        raise NotImplementedError("=== put code here ===")
-        return
+        return np.array([
+            -400*x[0]*(x[1]-x[0]**2) - 2*(1-x[0]),
+            200*(x[1]-x[0]**2)
+        ])

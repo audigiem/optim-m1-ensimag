@@ -44,29 +44,25 @@ class BFGSDescent(WolfeLineSearch):
         """
         del f, h
         x = np.copy(self.x)
-
-        raise NotImplementedError("=== put code here ===")
-        # ==== PUT CODE HERE ====
         # Calculer la direction de recherche
-        p = ...
+        d = -self.w @ g
         # Calculer la taille du pas
-        gamma = ...
-        # Mettre à jour le vecteur x
-        ...
+        alpha = self.l_search(d)
+        # Maj de x
+        self.x = x + alpha * d
 
         self.last_g = g
 
-        # ==== PUT CODE HERE ====
-        # Calculer le nouveau gradient par un appel au simulateur
-        g = ...
+        # Calculer le prochain gradient par un appel au simulateur
+        _, g1, _ = self.oracle.sim(self.x)
 
-        # ==== PUT CODE HERE ====
-        # Mettre à jour s et y
-        self.s = ...
-        self.y = ...
+        # Maj de s et y
+        self.s = self.x - x
+        self.y = g1 - self.last_g
+        
 
         # ==== PUT CODE HERE ====
         # Mettre à jour W_k
-        self.w = ...
+        self.w = self.w + np.outer(self.s, self.s) / np.dot(self.s, self.y) - np.outer(self.w @ self.y, self.y @ self.w) / np.dot(self.y, self.w @ self.y)
 
         return self.x

@@ -40,10 +40,12 @@ class Descent:
         x: ndarray
             Nouvel état du vecteur
         """
-        del f, g, h
-        raise NotImplementedError(
-            "Implement the update method for this algorithm"
-        )
+        # del f, g, h 
+        newX = self.x - self.lr * g
+        self.x = newX
+        return newX
+        
+        
 
     def stop(
         self,
@@ -70,10 +72,10 @@ class Descent:
         do_stop: bool
             Valeur logique de l'arrêt
         """
-        del f, g, h, it
-        raise NotImplementedError(
-            "Implement the stopping criterion for this algorithm"
-        )
+        # del f, g, h, it
+        if np.linalg.norm(self.x - self.steps[-1]) < self.prec or self.nsteps <= it:
+            return True
+        return False
 
     def step(self):
         """
